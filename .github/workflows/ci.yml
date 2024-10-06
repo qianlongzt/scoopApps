@@ -2,9 +2,12 @@ name: Tests
 
 on:
   push:
+    paths-ignore:
+      - ".github/**"
+      - ".vscode/**"
     branches:
-      - 'main'
-      - 'master'
+      - "main"
+      - "master"
   pull_request:
   workflow_dispatch:
 
