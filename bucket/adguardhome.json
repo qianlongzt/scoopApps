@@ -1,0 +1,41 @@
+{
+    "homepage": "https://adguard.com/adguard-home/overview.html",
+    "license": "GPL-3.0-or-later",
+    "version": "0.107.53",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.53/AdGuardHome_windows_amd64.zip",
+            "hash": "dbc767de9388190f76a33a4b5f4c395a71b6b67d8a5d0f3bc02ec8b675d41a06"
+        },
+        "32bit": {
+            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.53/AdGuardHome_windows_386.zip",
+            "hash": "83a10e9882ea6b8b141e404cad1e479fd6b6af1de5832ccd2c05bb43a704d2c1"
+        }
+    },
+    "extract_dir": "AdGuardHome",
+    "bin": "AdGuardHome.exe",
+    "persist": [
+        "data",
+        "AdGuardHome.yaml"
+    ],
+    "pre_install": [
+        "$config = \"AdGuardHome.yaml\"",
+        "if (!(Test-Path \"$persist_dir\\$config\")) { New-Item \"$dir\\$config\" -ItemType File | Out-Null }"
+    ],
+    "checkver": {
+        "github": "https://github.com/AdguardTeam/AdGuardHome"
+    },
+    "notes": [
+        "run `AdGuardHome.exe -s install --no-check-update` to install AdGuardHome service"
+    ],
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_amd64.zip"
+            },
+            "32bit": {
+                "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_386.zip"
+            }
+        }
+    }
+}
