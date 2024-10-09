@@ -28,14 +28,11 @@
     ],
     "pre_uninstall": [
         "if (!(is_admin)) { error 'Admin rights are required to uninstall'; break }",
-        "Stop-Process -Name 'AdGuardHome' -Force -ErrorAction SilentlyContinue | Out-Null",
         "Stop-Service -Name 'AdGuardHome' -Force -ErrorAction SilentlyContinue | Out-Null"
     ],
     "uninstaller": {
         "script": [
-            "AdGuardHome.exe -s uninstall",
-            "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }",
-            "if ($cmd -eq 'uninstall') { Remove-Item \"$env:ProgramData\\Tailscale\" -Force -ErrorAction SilentlyContinue }"
+            "AdGuardHome.exe -s uninstall"
         ]
     },
     "checkver": {
