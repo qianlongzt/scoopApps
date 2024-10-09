@@ -60,6 +60,37 @@ function move_link {
     New-Item -Path $Origin -ItemType $itemType -Value $Target | Out-Null
 }
 
+function move_or {
+    [CmdletBinding()]
+    param (
+        [ValidateNotNullOrEmpty()]
+        [string]$Origin,
+        [ValidateNotNullOrEmpty()]
+        [string]$Target,
+
+        [ValidateNotNullOrEmpty()]
+        [Parameter(HelpMessage = "file or directory")]
+        [ValidateSet("File", "Directory")]
+        [string]$Type = "Directory",
+        [switch]$Create = $false
+    )
+    if ($Origin -eq $Target) {
+        return
+    }
+
+    $old = Test-Path $Origin
+    $new = Test-Path $Target
+    if ($new) {
+        return
+    } elseif ($old) {
+        Move-Item -Path $Origin -Destination $Target
+    } else {
+        if ($Create) {
+            New-Item -Path $Target -ItemType $Type -Force | Out-Null
+        }
+    }
+}
+
 function same_drive {
     param (
         [string]$Origin,
