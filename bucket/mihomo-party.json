@@ -1,0 +1,49 @@
+{
+    "version": "1.4.7",
+    "description": "Another Mihomo GUI.",
+    "homepage": "https://mihomo.party/",
+    "license": {
+        "identifier": "GPL-3.0 license",
+        "url": "https://github.com/pompurin404/mihomo-party#GPL-3.0-1-ov-file"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/pompurin404/mihomo-party/releases/download/v1.4.7/mihomo-party-windows-1.4.7-x64-portable.7z",
+            "hash": "9c37ca8d9ea2df414aa12c5879e99d6ff137e4487fce54832bcfb68e47358737"
+        }
+    },
+    "pre_install": [
+        "if (!(Test-Path \"$persist_dir\\TrafficMonitor.ini\")) { New-Item \"$persist_dir\\TrafficMonitor.ini\" -ItemType File | Out-Null }",
+        "if (!(Test-Path \"$persist_dir\\TrafficMonitorGlobal.ini\")) {",
+        "    \"`n[config]`nportable_mode = true`n\" | Out-File \"$persist_dir\\TrafficMonitorGlobal.ini\" -Encoding utf8",
+        "}"
+    ],
+    "persist": [
+        "data",
+        [
+            "resources\\files\\TrafficMonitor\\config.ini",
+            "TrafficMonitor.ini"
+        ],
+        [
+            "resources\\files\\TrafficMonitor\\global_cfg.ini",
+            "TrafficMonitorGlobal.ini"
+        ]
+    ],
+    "shortcuts": [
+        [
+            "mihomo-party.exe",
+            "Mihomo Party"
+        ]
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/pompurin404/mihomo-party/releases",
+        "regex": "/releases/tag/v([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/pompurin404/mihomo-party/releases/download/v$version/mihomo-party-windows-$version-x64-portable.7z"
+            }
+        }
+    }
+}
