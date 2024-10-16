@@ -15,12 +15,19 @@
     },
     "pre_install": [
         ". $bucketsdir\\$bucket\\bin\\util.ps1",
+        "ensure $persist_dir",
         "move_or -Origin \"$env:LocalAppData\\Sandboxie-Plus\\Sandboxie-Plus.ini\" -Target \"$persist_dir\\Sandboxie-Plus.ini\"",
         "move_or -Origin \"$env:windir\\Sandboxie.ini\" -Target \"$persist_dir\\Sandboxie.ini\""
     ],
-    "persist": [
-        "Sandboxie-Plus.ini",
-        "Sandboxie.ini"
+    "##": "config will recreate by sandboxie.exe",
+    "post_install": [
+        "move-item \"$persist_dir\\Sandboxie-Plus.ini\" \"$dir\" -force",
+        "move-item \"$persist_dir\\Sandboxie.ini\" \"$dir\" -force"
+    ],
+    "pre_uninstall": [
+        "ensure $persist_dir",
+        "move-item \"$dir\\Sandboxie-Plus.ini\" \"$persist_dir\"",
+        "move-item \"$dir\\Sandboxie.ini\" \"$persist_dir\""
     ],
     "installer": {
         "args": [
