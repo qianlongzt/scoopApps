@@ -1,5 +1,5 @@
 {
-    "version": "1.5.5",
+    "version": "1.5.6",
     "description": "Another Mihomo GUI.",
     "homepage": "https://mihomo.party/",
     "license": {
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/mihomo-party-org/mihomo-party/releases/download/v1.5.5/mihomo-party-windows-1.5.5-x64-portable.7z",
-            "hash": "2ef487483eee5e66f5235fb6e17eb5a05d9dc582bd262baa01f95c077d97ad54"
+            "url": "https://github.com/mihomo-party-org/mihomo-party/releases/download/v1.5.6/mihomo-party-windows-1.5.6-x64-portable.7z",
+            "hash": "fa5e73515b920dd2e8bab9a615a4249fe61ccd95556381604c372a6a2ca52fcb"
         }
     },
     "pre_install": [
