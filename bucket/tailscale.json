@@ -48,7 +48,7 @@
         "script": [
             "tailscaled.exe uninstall-system-daemon",
             "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }",
-            "if ($cmd -eq 'uninstall') { Remove-Item \"$env:ProgramData\\Tailscale\" -Force -ErrorAction SilentlyContinue }"
+            "if ($cmd -eq 'uninstall') { Remove-Item \"$env:ProgramData\\Tailscale\" -Force -ErrorAction Stop }"
         ]
     },
     "extract_dir": "Tailscale",
