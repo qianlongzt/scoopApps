@@ -35,7 +35,7 @@
         ". $bucketsdir\\$bucket\\bin\\util.ps1",
         "move_link -origin \"$env:LocalAppData\\Google\\Chrome\\User Data\" -target \"$persist_dir\\User Data\""
     ],
-    "post_uninstall": "Remove-Item \"$env:LocalAppData\\Google\\Chrome\\User Data\" -Force -ErrorAction Stop",
+    "post_uninstall": "Remove-Item \"$env:LocalAppData\\Google\\Chrome\\User Data\" -Force",
     "env_set": {
         "CHROME_EXECUTABLE": "$dir\\chrome.exe"
     },

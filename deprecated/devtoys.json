@@ -27,7 +27,7 @@
         ". $bucketsdir\\$bucket\\bin\\util.ps1",
         "move_link -origin \"$env:LocalAppData\\DevToys-preview\" -target $persist_dir\\data"
     ],
-    "post_uninstall": "Remove-Item \"$env:LocalAppData\\DevToys-preview\" -Force -ErrorAction Stop",
+    "post_uninstall": "Remove-Item \"$env:LocalAppData\\DevToys-preview\" -Force",
     "persist": "Plugins",
     "checkver": {
         "url": "https://api.github.com/repos/DevToys-app/DevToys/releases",

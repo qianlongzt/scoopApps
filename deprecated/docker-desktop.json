@@ -47,10 +47,10 @@
         ]
     },
     "post_uninstall": [
-        "Remove-Item \"$env:USERPROFILE\\.docker\" -Force -ErrorAction Stop",
-        "Remove-Item \"$env:LocalAppData\\Docker\" -Force -ErrorAction Stop",
-        "Remove-Item \"$env:AppData\\Docker\" -Force -ErrorAction Stop",
-        "Remove-Item \"$env:AppData\\Docker Desktop\" -Force -ErrorAction Stop"
+        "Remove-Item \"$env:USERPROFILE\\.docker\" -Force",
+        "Remove-Item \"$env:LocalAppData\\Docker\" -Force",
+        "Remove-Item \"$env:AppData\\Docker\" -Force",
+        "Remove-Item \"$env:AppData\\Docker Desktop\" -Force"
     ],
     "shortcuts": [
         [
