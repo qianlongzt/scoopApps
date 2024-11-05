@@ -18,36 +18,20 @@ function move_link {
     $old = Test-Path $Origin
     $new = Test-Path $Target
 
-    $itemType = ''
-    if (is_admin) {
-        $itemType = 'SymbolicLink'
-    } else {
-        if ($Type -eq "File") {
-            if (same_drive -origin $Origin -target $Target) {
-                $itemType = 'HardLink'
-            } else {
-                error "make symbolic link $Origin => $Target need admin rights"
-                break
-            }
-        } else {
-            $itemType = "Junction"
-        }
-    }
-
     if ($old) {
         $data = (Get-Item $Origin -force | Select-Object LinkType, target)
         if ($data.LinkType -in ("SymbolicLink", "Junction")) {
             if ($data.Target -eq $Target ) {
                 return
             } else {
-                error ("$Origin exist, but target is " + $data.LinkType + "(" + $data.Target + "). need $Target")
-                exit
+                Write-Error ("$Origin exist, but target is " + $data.LinkType + "(" + $data.Target + "), need $Target")
+                exit 1
             }
         }
 
         if ($new) {
-            error "$Target exist, you need manual move data"
-            exit
+            Write-Error "$Target exist, you need manual move data"
+            exit 1
         } else {
             INFO "move $Origin to $Target"
             Move-Item -Path $Origin -Destination $Target
@@ -57,7 +41,13 @@ function move_link {
             New-Item -Path $Target -ItemType $Type -Force | Out-Null
         }
     }
-    New-Item -Path $Origin -ItemType $itemType -Value $Target | Out-Null
+    try {
+      New-Item -Path $Origin -ItemType 'SymbolicLink' -Value $Target -ErrorAction Stop | Out-Null
+    }
+    catch {
+        Write-Error "Failed to create symbolic link ${_}"
+        exit 1
+    }
 }
 
 function move_or {
@@ -88,17 +78,5 @@ function move_or {
         if ($Create) {
             New-Item -Path $Target -ItemType $Type -Force | Out-Null
         }
-    }
-}
-
-function same_drive {
-    param (
-        [string]$Origin,
-        [string]$Target
-    )
-    if ($Origin.Contains(":\") -and $Target.Contains(":\")) {
-        $o = Split-Path -Path $Origin -Qualifier
-        $t = Split-Path -Path $Target -Qualifier
-        return $o -eq $t
     }
 }
