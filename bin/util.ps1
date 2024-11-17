@@ -41,6 +41,17 @@ function move_link {
             New-Item -Path $Target -ItemType $Type -Force | Out-Null
         }
     }
+    new_link $Origin $Target
+}
+
+function new_link {
+    [CmdletBinding()]
+    param (
+        [ValidateNotNullOrEmpty()]
+        [string]$Origin,
+        [ValidateNotNullOrEmpty()]
+        [string]$Target
+    )
     try {
       New-Item -Path $Origin -ItemType 'SymbolicLink' -Value $Target -ErrorAction Stop | Out-Null
     }
