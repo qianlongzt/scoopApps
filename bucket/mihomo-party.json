@@ -14,19 +14,14 @@
     },
     "pre_install": [
         "if (!(Test-Path \"$persist_dir\\TrafficMonitor.ini\")) { New-Item \"$persist_dir\\TrafficMonitor.ini\" -ItemType File | Out-Null }",
-        "if (!(Test-Path \"$persist_dir\\TrafficMonitorGlobal.ini\")) {",
-        "    \"`n[config]`nportable_mode = true`n\" | Out-File \"$persist_dir\\TrafficMonitorGlobal.ini\" -Encoding utf8",
-        "}"
+        "\"`n[config]`nportable_mode = true`n\" | Out-File \"$dir\\resources\\files\\TrafficMonitor\\global_cfg.ini\" -Encoding utf8"
+
     ],
     "persist": [
         "data",
         [
             "resources\\files\\TrafficMonitor\\config.ini",
             "TrafficMonitor.ini"
-        ],
-        [
-            "resources\\files\\TrafficMonitor\\global_cfg.ini",
-            "TrafficMonitorGlobal.ini"
         ]
     ],
     "shortcuts": [
