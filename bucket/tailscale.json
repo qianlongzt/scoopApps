@@ -11,14 +11,6 @@
         "64bit": {
             "url": "https://pkgs.tailscale.com/stable/tailscale-setup-1.82.0-amd64.msi",
             "hash": "32b8ad3ca2202d090bebe8e2d8108bcdd8c9371d4840ebf7c03288a9af133715"
-        },
-        "32bit": {
-            "url": "https://pkgs.tailscale.com/stable/tailscale-setup-1.82.0-x86.msi",
-            "hash": "48b1a37bfdc93e6cd9101cdb0433cfba0f66579506127dc0a8ccbf5b3cc4120b"
-        },
-        "arm64": {
-            "url": "https://pkgs.tailscale.com/stable/tailscale-setup-1.82.0-arm64.msi",
-            "hash": "88bc19c311de33b19df9b98e2a30d6413f003dc6db1168df85ec094cdbdef3f1"
         }
     },
     "pre_install": [
@@ -42,16 +34,16 @@
     "pre_uninstall": [
         "if (!(is_admin)) { error 'Admin rights are required to uninstall'; break }",
         "Stop-Process -Name 'tailscale-ipn' -Force -ErrorAction SilentlyContinue | Out-Null",
-        "Stop-Service -Name 'Tailscale' -Force -ErrorAction Stop | Out-Null"
+        "Stop-Service -Name 'Tailscale' -Force| Out-Null"
     ],
     "uninstaller": {
         "script": [
             "tailscaled.exe uninstall-system-daemon",
             "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }",
-            "if ($cmd -eq 'uninstall') { Remove-Item \"$env:ProgramData\\Tailscale\" -Force -ErrorAction Stop }"
+            "if ($cmd -eq 'uninstall') { Remove-Item \"$env:ProgramData\\Tailscale\" -Force }"
         ]
     },
-    "extract_dir": "Tailscale",
+    "extract_dir": "PFiles64/Tailscale",
     "bin": [
         "tailscale.exe",
         "tailscale-ipn.exe",
@@ -71,12 +63,6 @@
         "architecture": {
             "64bit": {
                 "url": "https://pkgs.tailscale.com/stable/tailscale-setup-$version-amd64.msi"
-            },
-            "32bit": {
-                "url": "https://pkgs.tailscale.com/stable/tailscale-setup-$version-x86.msi"
-            },
-            "arm64": {
-                "url": "https://pkgs.tailscale.com/stable/tailscale-setup-$version-arm64.msi"
             }
         },
         "hash": {
