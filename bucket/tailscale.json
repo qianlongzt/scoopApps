@@ -1,5 +1,5 @@
 {
-    "version": "1.92.3",
+    "version": "1.92.5",
     "description": "Tailscale a WireGuard based mesh VPN, used to connect your computers and other devices together securely without proxies.",
     "homepage": "https://tailscale.com",
     "license": "BSD-3-Clause",
@@ -9,8 +9,8 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://pkgs.tailscale.com/stable/tailscale-setup-1.92.3-amd64.msi",
-            "hash": "d838d3bbf944fe75d570f4f2bd7a55de8c1196b805451714607ee7078dcc82e9"
+            "url": "https://pkgs.tailscale.com/stable/tailscale-setup-1.92.5-amd64.msi",
+            "hash": "7180fa0b6bdfc129445ded5762cfd71226fbf471ecae3c5e332ea2dc3cbb9d78"
         }
     },
     "pre_install": [
