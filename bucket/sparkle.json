@@ -11,17 +11,8 @@
             "hash": "de1734de3e09afb0554389cf655a7f89bc833fe23e78c8dbb4a2c2ff2e7d9d22"
         }
     },
-    "pre_install": [
-        "ensure $persist_dir",
-        "if (!(Test-Path \"$persist_dir\\TrafficMonitor.ini\")) { New-Item \"$persist_dir\\TrafficMonitor.ini\" -ItemType File | Out-Null }",
-        "\"`n[config]`nportable_mode = true`n\" | Out-File \"$dir\\resources\\files\\TrafficMonitor\\global_cfg.ini\" -Encoding utf8"
-    ],
     "persist": [
-        "data",
-        [
-            "resources\\files\\TrafficMonitor\\config.ini",
-            "TrafficMonitor.ini"
-        ]
+        "data"
     ],
     "shortcuts": [
         [
